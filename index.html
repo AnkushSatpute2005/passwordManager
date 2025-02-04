@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+            /* font-weight: 400; */
+        }
+
+        h1 {
+            font-weight: 700;
+        }
+
+        header {
+            width: 84vw;
+            background-color: blueviolet;
+            padding: 30px;
+            text-align: center;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 250px;
+        }
+
+        .side-nav {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: -21px 0px 35px;
+            padding: 20px;
+            /* border-right: 1px solid black; */
+            /* background-color: rgb(219, 219, 219); */
+        }
+
+        /* .side-nav ul a {
+            text-decoration: none;
+            color: black;
+            font: bold;
+        } */
+
+        .side-nav ul li {
+            padding: 15px;
+            /* border: 1px solid black; */
+            /* border-radius: 15px;
+            box-shadow:1px 2px 6px 0px #dbdad9; */
+        }
+
+        .side-nav ul li:hover {
+            border-radius: 15px;
+            box-shadow: 1px 2px 6px 0px #dbdad9;
+            background-color: blueviolet;
+            color: white;
+        }
+
+        .side-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .side-nav div {
+            padding: 50px;
+        }
+
+        .side-nav hr {
+            margin: 20px;
+        }
+
+        main {
+            position: fixed;
+            top: 98px;
+            left: 250px;
+            /* background: yellow; */
+            /* text-align: center; */
+            width: 84vw;
+            height: 87vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .input-div {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 26px;
+
+        }
+
+        .input-container {
+            box-shadow: 1px 2px 6px 0px #dbdad9;
+            text-align: center;
+            padding: 30px;
+            border-radius: 32px;
+
+        }
+
+        .btn-add-password {
+            background-color: blueviolet;
+            padding: 12px;
+            border: none;
+            border-radius: 14px;
+            color: white;
+            margin-top: 20px;
+        }
+
+        #website-name {
+            padding: 12px;
+            border: none;
+            box-shadow: 1px 2px 6px 0px #dbdad9;
+            border-radius: 14px;
+        }
+
+        #website-password {
+            padding: 12px;
+            border: none;
+            /* box-shadow: 1px 2px 6px 0px #dbdad9; */
+            border-radius: 14px;
+        }
+
+        #website-password-div {
+            /* padding: 12px; */
+            /* border: none; */
+            box-shadow: 1px 2px 6px 0px #dbdad9;
+            border-radius: 14px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <h1>PassLoker</h1>
+    </header>
+    <section class="side-nav">
+        <div>
+            <h2>PassLoker</h2>
+        </div>
+        <hr>
+        <ul>
+            <!-- <li><a href="#">Add Paswords</a></li>
+            <li><a href="#">Generate Pasword</a></li>
+            <li><a href="#">Saved Paswords</a></li>
+            <li><a href="#">Settings</a></li> -->
+            <li>Add Paswords</li>
+            <li>Generate Pasword</li>
+            <li>Saved Paswords</li>
+            <li>Settings</li>
+        </ul>
+    </section>
+    <main>
+        <!-- <label for="website-name">Enter website website name</label> -->
+        <div class="input-container">
+            <div class="input-div">
+                <input type="text" id="website-name" placeholder="Website name">
+                <div id="website-password-div">
+                    <input type="password" id="website-password" placeholder="password">
+                </div>
+            </div>
+            <input type="button" value="Add password" class="btn-add-password">
+        </div>
+
+    </main>
+</body>
+
+</html>
