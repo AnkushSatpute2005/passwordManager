@@ -79,7 +79,7 @@
         }
 
         main {
-            position: fixed;
+            position: relative;
             top: 98px;
             left: 250px;
             /* background: yellow; */
@@ -102,20 +102,26 @@
         }
 
         .input-container {
-            box-shadow: 1px 2px 6px 0px #dbdad9;
+            box-shadow: 1px 2px 16px 0px #dbdad9;
             text-align: center;
             padding: 30px;
             border-radius: 32px;
 
         }
 
-        .btn-add-password {
+        .input-container:hover {
+            box-shadow: 5px 8px 82px 9px #dbdad9;
+        }
+
+        .btn-add-password,
+        .btn-generate-password,
+        .btn-copy {
             background-color: blueviolet;
             padding: 12px;
             border: none;
             border-radius: 14px;
             color: white;
-            margin-top: 20px;
+            /* margin-top: 20px; */
         }
 
         #website-name {
@@ -138,6 +144,65 @@
             box-shadow: 1px 2px 6px 0px #dbdad9;
             border-radius: 14px;
         }
+
+        #password {
+            padding: 12px;
+            border: none;
+            box-shadow: 1px 2px 6px 0px #dbdad9;
+            border-radius: 14px;
+        }
+
+        .pg-div,
+        .slider-container {
+            display: flex;
+            /* justify-content: space-between; */
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px;
+            margin: 10px;
+
+        }
+
+        .slider-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .saved-pass-div {
+            width: 80%;
+            text-align: center;
+            position: relative;
+            top: -223px;
+
+        }
+
+        table {
+            width: 100%;
+            /* border-collapse: collapse; */
+            box-shadow: 0px 1px 12px 1px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+            padding: 10px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: center;
+            /* border: 1px solid #ddd; */
+        }
+
+        th {
+            background-color: blueviolet;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: rgba(138, 43, 226, 0.1);
+        }
     </style>
 
 </head>
@@ -156,15 +221,36 @@
             <li><a href="#">Generate Pasword</a></li>
             <li><a href="#">Saved Paswords</a></li>
             <li><a href="#">Settings</a></li> -->
-            <li>Add Paswords</li>
-            <li>Generate Pasword</li>
-            <li>Saved Paswords</li>
+            <li onclick="handelAddPasswordNav()">Add Paswords</li>
+            <li onclick="handelGeneratePasswordNav()">Generate Pasword</li>
+            <li onclick="handelSavedPasswordsNav()">Saved Paswords</li>
             <li>Settings</li>
         </ul>
     </section>
-    <main>
-        <!-- <label for="website-name">Enter website website name</label> -->
-        <div class="input-container">
+    <main class="main-page">
+        <div class="saved-pass-div">
+            <!-- <h2>Basic HTML Table</h2>
+
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Sr.No.</th>
+                        <th>Website Name</th>
+                        <th>Passwords</th>
+                        <th>Edit</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>25</td>
+                        <td><button>copy</button></td>
+                    </tr>
+                </tbody>
+            </table> -->
+        </div>
+
+
+        <!-- <form class="input-container">
             <div class="input-div">
                 <input type="text" id="website-name" placeholder="Website name">
                 <div id="website-password-div">
@@ -172,9 +258,106 @@
                 </div>
             </div>
             <input type="button" value="Add password" class="btn-add-password">
-        </div>
+        </form> -->
 
+        <!-- <form action="" class="input-container">
+            <div class="pg-div">
+                <input type="text" id="password" readonly>
+                <button class="btn-copy" onclick="copyPassword()">Copy</button>
+            </div>
+
+            <div class="slider-container">
+                <label>Password Length: <span id="lengthValue">12</span></label>
+                <input type="range" id="lengthSlider" min="6" max="20" value="12">
+            </div>
+            <button class="btn-generate-password" onclick="generatePassword()">Generate Password</button>
+        </form> -->
     </main>
+    <script>
+        // const addPasswordPage = document.querySelector(".input-container");
+        handelAddPasswordNav = () => {
+            const mainContainer = document.querySelector(".main-page");
+            mainContainer.innerHTML = "";// Clear previous content
+
+            // Create a new div for the input form
+            const container = document.createElement("form");
+            container.classList.add("input-container");
+
+            container.innerHTML = `
+            <div class="input-div">
+                <input type="text" id="website-name" placeholder="Website name">
+                <div id="website-password-div">
+                    <input type="password" id="website-password" placeholder="password">
+                </div>
+            </div>
+            <input type="button" value="Add password" class="btn-add-password">
+            `;
+
+            mainContainer.appendChild(container);
+            //   console.log(inputContainer);
+        }
+
+        handelGeneratePasswordNav = () => {
+            const mainContainer = document.querySelector(".main-page");
+            mainContainer.innerHTML = "";// Clear previous content
+
+            // Create a new div for the input form
+            const container = document.createElement("form");
+            container.classList.add("input-container");
+
+            container.innerHTML = `
+             <div class="pg-div">
+                <input type="text" id="password" readonly>
+                <button class="btn-copy" onclick="copyPassword()">Copy</button>
+            </div>
+
+            <div class="slider-container">
+                <label>Password Length: <span id="lengthValue">12</span></label>
+                <input type="range" id="lengthSlider" min="6" max="20" value="12">
+            </div>
+            <button class="btn-generate-password" onclick="generatePassword()">Generate Password</button>
+            `;
+
+            mainContainer.appendChild(container);
+            //   console.log(inputContainer);
+        }
+
+        handelSavedPasswordsNav = () => {
+            const mainContainer = document.querySelector(".main-page");
+            mainContainer.innerHTML = "";// Clear previous content
+
+            // Create a new div for the input form
+            const container = document.createElement("div");
+            container.classList.add("saved-pass-div");
+
+            container.innerHTML = `
+             <h2>Basic HTML Table</h2>
+
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Sr.No.</th>
+                        <th>Website Name</th>
+                        <th>Passwords</th>
+                        <th>Edit</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>25</td>
+                        <td><button>copy</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            `;
+
+            mainContainer.appendChild(container);
+            //   console.log(inputContainer);
+
+        }
+
+
+    </script>
 </body>
 
 </html>
