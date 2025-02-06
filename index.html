@@ -1,363 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Manager</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-            /* font-weight: 400; */
-        }
-
-        h1 {
-            font-weight: 700;
-        }
-
-        header {
-            width: 84vw;
-            background-color: blueviolet;
-            padding: 30px;
-            text-align: center;
-            color: white;
-            position: fixed;
-            top: 0;
-            left: 250px;
-        }
-
-        .side-nav {
-            height: 100vh;
-            width: 250px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            box-shadow: -21px 0px 35px;
-            padding: 20px;
-            /* border-right: 1px solid black; */
-            /* background-color: rgb(219, 219, 219); */
-        }
-
-        /* .side-nav ul a {
-            text-decoration: none;
-            color: black;
-            font: bold;
-        } */
-
-        .side-nav ul li {
-            padding: 15px;
-            /* border: 1px solid black; */
-            /* border-radius: 15px;
-            box-shadow:1px 2px 6px 0px #dbdad9; */
-        }
-
-        .side-nav ul li:hover {
-            border-radius: 15px;
-            box-shadow: 1px 2px 6px 0px #dbdad9;
-            background-color: blueviolet;
-            color: white;
-        }
-
-        .side-nav ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .side-nav div {
-            padding: 50px;
-        }
-
-        .side-nav hr {
-            margin: 20px;
-        }
-
-        main {
-            position: relative;
-            top: 98px;
-            left: 250px;
-            /* background: yellow; */
-            /* text-align: center; */
-            width: 84vw;
-            height: 87vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .input-div {
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 26px;
-
-        }
-
-        .input-container {
-            box-shadow: 1px 2px 16px 0px #dbdad9;
-            text-align: center;
-            padding: 30px;
-            border-radius: 32px;
-
-        }
-
-        .input-container:hover {
-            box-shadow: 5px 8px 82px 9px #dbdad9;
-        }
-
-        .btn-add-password,
-        .btn-generate-password,
-        .btn-copy {
-            background-color: blueviolet;
-            padding: 12px;
-            border: none;
-            border-radius: 14px;
-            color: white;
-            /* margin-top: 20px; */
-        }
-
-        #website-name {
-            padding: 12px;
-            border: none;
-            box-shadow: 1px 2px 6px 0px #dbdad9;
-            border-radius: 14px;
-        }
-
-        #website-password {
-            padding: 12px;
-            border: none;
-            /* box-shadow: 1px 2px 6px 0px #dbdad9; */
-            border-radius: 14px;
-        }
-
-        #website-password-div {
-            /* padding: 12px; */
-            /* border: none; */
-            box-shadow: 1px 2px 6px 0px #dbdad9;
-            border-radius: 14px;
-        }
-
-        #password {
-            padding: 12px;
-            border: none;
-            box-shadow: 1px 2px 6px 0px #dbdad9;
-            border-radius: 14px;
-        }
-
-        .pg-div,
-        .slider-container {
-            display: flex;
-            /* justify-content: space-between; */
-            justify-content: space-around;
-            align-items: center;
-            padding: 10px;
-            margin: 10px;
-
-        }
-
-        .slider-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .saved-pass-div {
-            width: 80%;
-            text-align: center;
-            position: relative;
-            top: -223px;
-
-        }
-
-        table {
-            width: 100%;
-            /* border-collapse: collapse; */
-            box-shadow: 0px 1px 12px 1px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            background: white;
-            padding: 10px;
-        }
-
-        th,
-        td {
-            padding: 12px;
-            text-align: center;
-            /* border: 1px solid #ddd; */
-        }
-
-        th {
-            background-color: blueviolet;
-            color: white;
-        }
-
-        tr:hover {
-            background-color: rgba(138, 43, 226, 0.1);
-        }
-    </style>
-
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
-
 <body>
-    <header>
-        <h1>PassLoker</h1>
-    </header>
-    <section class="side-nav">
-        <div>
-            <h2>PassLoker</h2>
-        </div>
-        <hr>
-        <ul>
-            <!-- <li><a href="#">Add Paswords</a></li>
-            <li><a href="#">Generate Pasword</a></li>
-            <li><a href="#">Saved Paswords</a></li>
-            <li><a href="#">Settings</a></li> -->
-            <li onclick="handelAddPasswordNav()">Add Paswords</li>
-            <li onclick="handelGeneratePasswordNav()">Generate Pasword</li>
-            <li onclick="handelSavedPasswordsNav()">Saved Paswords</li>
-            <li>Settings</li>
-        </ul>
-    </section>
-    <main class="main-page">
-        <div class="saved-pass-div">
-            <!-- <h2>Basic HTML Table</h2>
-
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Sr.No.</th>
-                        <th>Website Name</th>
-                        <th>Passwords</th>
-                        <th>Edit</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>John Doe</td>
-                        <td>25</td>
-                        <td><button>copy</button></td>
-                    </tr>
-                </tbody>
-            </table> -->
+    <div class="container" id="container">
+        <!-- Add Password Section -->
+        <div class="form-container add-password">
+            <form class="input-container">
+                <h2>Add Your Passwords</h2>
+                <div class="input-div">
+                    <input type="text" id="website-name" placeholder="Website Name">
+                    <div id="website-password-div">
+                        <input type="password" id="website-password" placeholder="Password">
+                    </div>
+                </div>
+                <button type="button" class="btn-add-password">Add Password</button>
+            </form>
         </div>
 
+        <!-- Generate Password Section -->
+        <div class="form-container generate-password">
+            <form class="input-container">
+                <h2>Generate Secure Password</h2>
+                <div class="output-div">
+                    <input type="text" id="password" readonly>
+                    <button type="button" class="btn-copy" onclick="copyPassword()">Copy</button>
+                    
+                </div>
+        
+                <div class="slider-container">
+                    <label for="lengthSlider">Password Length: <span id="lengthValue">12</span></label>
+                    <input type="range" id="lengthSlider" min="6" max="20" value="12">
+                </div>
+                <button type="button" class="btn-generate-password" onclick="generatePassword()">Generate Password</button>
+            </form>
+        </div>
 
-        <!-- <form class="input-container">
-            <div class="input-div">
-                <input type="text" id="website-name" placeholder="Website name">
-                <div id="website-password-div">
-                    <input type="password" id="website-password" placeholder="password">
+        <!-- Toggle Section -->
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome to Password Manager</h1>
+                    <p>Store your passwords securely</p>
+                    <button class="toggle-btn" onclick="toggleForm()">Go to Add Password</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Welcome to Password Manager</h1>
+                    <p>Generator your passwords securely</p>
+                    <button class="toggle-btn" onclick="toggleForm()">Go to Generator</button>
                 </div>
             </div>
-            <input type="button" value="Add password" class="btn-add-password">
-        </form> -->
+        </div>
+    </div>
 
-        <!-- <form action="" class="input-container">
-            <div class="pg-div">
-                <input type="text" id="password" readonly>
-                <button class="btn-copy" onclick="copyPassword()">Copy</button>
-            </div>
-
-            <div class="slider-container">
-                <label>Password Length: <span id="lengthValue">12</span></label>
-                <input type="range" id="lengthSlider" min="6" max="20" value="12">
-            </div>
-            <button class="btn-generate-password" onclick="generatePassword()">Generate Password</button>
-        </form> -->
-    </main>
-    <script>
-        // const addPasswordPage = document.querySelector(".input-container");
-        handelAddPasswordNav = () => {
-            const mainContainer = document.querySelector(".main-page");
-            mainContainer.innerHTML = "";// Clear previous content
-
-            // Create a new div for the input form
-            const container = document.createElement("form");
-            container.classList.add("input-container");
-
-            container.innerHTML = `
-            <div class="input-div">
-                <input type="text" id="website-name" placeholder="Website name">
-                <div id="website-password-div">
-                    <input type="password" id="website-password" placeholder="password">
-                </div>
-            </div>
-            <input type="button" value="Add password" class="btn-add-password">
-            `;
-
-            mainContainer.appendChild(container);
-            //   console.log(inputContainer);
-        }
-
-        handelGeneratePasswordNav = () => {
-            const mainContainer = document.querySelector(".main-page");
-            mainContainer.innerHTML = "";// Clear previous content
-
-            // Create a new div for the input form
-            const container = document.createElement("form");
-            container.classList.add("input-container");
-
-            container.innerHTML = `
-             <div class="pg-div">
-                <input type="text" id="password" readonly>
-                <button class="btn-copy" onclick="copyPassword()">Copy</button>
-            </div>
-
-            <div class="slider-container">
-                <label>Password Length: <span id="lengthValue">12</span></label>
-                <input type="range" id="lengthSlider" min="6" max="20" value="12">
-            </div>
-            <button class="btn-generate-password" onclick="generatePassword()">Generate Password</button>
-            `;
-
-            mainContainer.appendChild(container);
-            //   console.log(inputContainer);
-        }
-
-        handelSavedPasswordsNav = () => {
-            const mainContainer = document.querySelector(".main-page");
-            mainContainer.innerHTML = "";// Clear previous content
-
-            // Create a new div for the input form
-            const container = document.createElement("div");
-            container.classList.add("saved-pass-div");
-
-            container.innerHTML = `
-             <h2>Basic HTML Table</h2>
-
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Sr.No.</th>
-                        <th>Website Name</th>
-                        <th>Passwords</th>
-                        <th>Edit</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>John Doe</td>
-                        <td>25</td>
-                        <td><button>copy</button></td>
-                    </tr>
-                </tbody>
-            </table>
-            `;
-
-            mainContainer.appendChild(container);
-            //   console.log(inputContainer);
-
-        }
-
-
-    </script>
+    <!-- Link JavaScript -->
+    <script src="script.js"></script>
 </body>
-
 </html>
