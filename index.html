@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,58 +8,87 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
+
 <body>
-    <div class="container" id="container">
-        <!-- Add Password Section -->
-        <div class="form-container add-password">
-            <form class="input-container">
-                <h2>Add Your Passwords</h2>
-                <div class="input-div">
-                    <input type="text" id="website-name" placeholder="Website Name">
-                    <div id="website-password-div">
-                        <input type="password" id="website-password" placeholder="Password">
+    <header>
+        <h1>Password Manager</h1>
+    </header>
+    <div class="main">
+        <div class="container" id="container">
+            <!-- Add Password Section -->
+            <div class="form-container add-password">
+                <form class="input-container">
+                    <h2>Add Your Passwords</h2>
+                    <div class="input-div">
+                        <input type="text" id="website-name" placeholder="Website Name">
+                        <div id="website-password-div">
+                            <input type="password" id="website-password" placeholder="Password">
+                        </div>
                     </div>
-                </div>
-                <button type="button" class="btn-add-password">Add Password</button>
-            </form>
-        </div>
+                    <button type="button" class="btn-add-password" onclick="addPassword()">Add Password</button>
+                </form>
+            </div>
 
-        <!-- Generate Password Section -->
-        <div class="form-container generate-password">
-            <form class="input-container">
-                <h2>Generate Secure Password</h2>
-                <div class="output-div">
-                    <input type="text" id="password" readonly>
-                    <button type="button" class="btn-copy" onclick="copyPassword()">Copy</button>
-                    
-                </div>
-        
-                <div class="slider-container">
-                    <label for="lengthSlider">Password Length: <span id="lengthValue">12</span></label>
-                    <input type="range" id="lengthSlider" min="6" max="20" value="12">
-                </div>
-                <button type="button" class="btn-generate-password" onclick="generatePassword()">Generate Password</button>
-            </form>
-        </div>
+            <!-- Generate Password Section -->
+            <div class="form-container generate-password">
+                <form class="input-container">
+                    <h2>Generate Secure Password</h2>
+                    <div class="output-div">
+                        <input type="text" id="password" readonly>
+                        <button type="button" class="btn-copy" onclick="copyPassword()">Copy</button>
+                    </div>
+                    <p>Select Password Strength:</p>
 
-        <!-- Toggle Section -->
-        <div class="toggle-container">
-            <div class="toggle">
-                <div class="toggle-panel toggle-left">
-                    <h1>Welcome to Password Manager</h1>
-                    <p>Store your passwords securely</p>
-                    <button class="toggle-btn" onclick="toggleForm()">Go to Add Password</button>
-                </div>
-                <div class="toggle-panel toggle-right">
-                    <h1>Welcome to Password Manager</h1>
-                    <p>Generator your passwords securely</p>
-                    <button class="toggle-btn" onclick="toggleForm()">Go to Generator</button>
+                    <label><input type="radio" name="strength" value="weak"> Weak</label>
+                    <label><input type="radio" name="strength" value="medium"> Medium</label>
+                    <label><input type="radio" name="strength" value="strong"> Strong</label>
+
+                    <div class="slider-container">
+                        <label for="lengthSlider">Password Length: <span id="lengthValue">12</span></label>
+                        <input type="range" id="lengthSlider" min="6" max="20" value="12">
+                    </div>
+                    <button type="button" class="btn-generate-password" onclick="generatePassword()">Generate
+                        Password</button>
+                </form>
+            </div>
+
+            <!-- Toggle Section -->
+            <div class="toggle-container">
+                <div class="toggle">
+                    <div class="toggle-panel toggle-left">
+                        <h1>Welcome to Password Manager</h1>
+                        <p>Store your passwords securely</p>
+                        <button class="toggle-btn" onclick="toggleForm()">Go to Add Password</button>
+                    </div>
+                    <div class="toggle-panel toggle-right">
+                        <h1>Welcome to Password Manager</h1>
+                        <p>Generator your passwords securely</p>
+                        <button class="toggle-btn" onclick="toggleForm()">Go to Generator</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- <h2>Saved Passwords</h2> -->
+    <div class="savedPasswords">
+        <h2>Saved Passwords</h2>
+        <table>
+            <tbody class="password-container">
+                
+                <tr>
+                    <th>Website Name</th>
+                    <th>Website Password</th>
+                    <th>Actions</th>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+
+
     <!-- Link JavaScript -->
     <script src="script.js"></script>
 </body>
+
 </html>

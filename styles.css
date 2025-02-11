@@ -13,11 +13,14 @@
 }
 
 body{
-    /* background-color: rgba(0, 0, 0, 0.795); */
+    text-align: center;
+}
+
+.main{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 70vh;
 }
 
 h2{
@@ -206,4 +209,24 @@ h2{
 .toggle-right{
     right: 0;
     transform: translateX(0);
+}
+
+.savedPasswords{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+    background-color: antiquewhite;
+    border-radius: 20px;
+
+}
+
+.savedPasswords table{
+    width: 80%;
+    padding: 10px;
+}
+
+td,th{
+    padding: 5px;
 }
