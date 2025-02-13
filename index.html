@@ -37,11 +37,12 @@
                         <input type="text" id="password" readonly>
                         <button type="button" class="btn-copy" onclick="copyPassword()">Copy</button>
                     </div>
-                    <p>Select Password Strength:</p>
-
-                    <label><input type="radio" name="strength" value="weak"> Weak</label>
-                    <label><input type="radio" name="strength" value="medium"> Medium</label>
-                    <label><input type="radio" name="strength" value="strong"> Strong</label>
+                    <div class="label-div">
+                        <p>Select Password Strength</p>
+                        <label><input type="radio" name="strength" value="weak"> Weak</label>
+                        <label><input type="radio" name="strength" value="medium"> Medium</label>
+                        <label><input type="radio" name="strength" value="strong"> Strong</label>
+                    </div>
 
                     <div class="slider-container">
                         <label for="lengthSlider">Password Length: <span id="lengthValue">12</span></label>

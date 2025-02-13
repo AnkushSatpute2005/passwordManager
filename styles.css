@@ -280,4 +280,12 @@ td,th{
     width: 100%;
     text-align: center;
 }
+.label-div{
+    margin: 2px;
+    padding: 4px;
+    width: 100%;
+    border: 2px solid #0b2e33;
+    color: #0b2e33;
+    border-radius: 10px;
+}
 
