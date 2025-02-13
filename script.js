@@ -5,9 +5,18 @@ function toggleForm() {
   container.classList.toggle("active");
 }
 
+const lengthSlider = document.getElementById("lengthSlider");
+const lengthValue = document.getElementById("lengthValue");
+
+// Update the span element when the range input value changes
+lengthSlider.addEventListener("input", function () {
+  lengthValue.textContent = lengthSlider.value;
+});
+
 // Generate a random password
 function generatePassword() {
-  const passwordList = document.getElementById("passwordList.lengthSlider").value;
+  const length = document.getElementById("lengthSlider").value;
+  console.log(length);
   const weakChars = "abcdefghijklmnopqrstuvwxyz";
   const mediumChars = weakChars + "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   const strongChars = mediumChars + "!@#$%^&*()_+{}[]<>?";
@@ -36,8 +45,8 @@ function generatePassword() {
 
   let password = "";
 
-  for (let i = 0; i < passwordList.length; i++) {
-    const randomIndex = Math.floor(Math.random() * chars.passwordList.length);
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * chars.length);
     password += chars.charAt(randomIndex);
   }
 
@@ -63,80 +72,82 @@ function copyPassword() {
 }
 
 // Update displayed password passwordList.length value
-document.getElementById("passwordList.lengthSlider").addEventListener("input", function () {
-  document.getElementById("passwordList.lengthValue").textContent = this.value;
-});
+document
+  .getElementById("passwordList.lengthSlider")
+  .addEventListener("input", function () {
+    document.getElementById("passwordList.lengthValue").textContent =
+      this.value;
+  });
 
 function addPassword() {
-    const website_name = document.getElementById("website-name").value;
-    const website_password = document.getElementById("website-password").value;
+  const website_name = document.getElementById("website-name").value;
+  const website_password = document.getElementById("website-password").value;
 
-    if (website_name && website_password) {
-        const newEntry = {
-            websiteName: website_name,
-            websitePassword: website_password,
-        };
+  if (website_name && website_password) {
+    const newEntry = {
+      websiteName: website_name,
+      websitePassword: website_password,
+    };
 
-        const storedPasswords = JSON.parse(localStorage.getItem("passwords")) || [];
-        storedPasswords.push(newEntry);
-        localStorage.setItem("passwords", JSON.stringify(storedPasswords));
+    const storedPasswords = JSON.parse(localStorage.getItem("passwords")) || [];
+    storedPasswords.push(newEntry);
+    localStorage.setItem("passwords", JSON.stringify(storedPasswords));
 
-        alert("Password saved successfully!");
+    alert("Password saved successfully!");
 
-        // Clear input fields
-        document.getElementById("website-name").value = "";
-        document.getElementById("website-password").value = "";
+    // Clear input fields
+    document.getElementById("website-name").value = "";
+    document.getElementById("website-password").value = "";
 
-        showPassword(); // ✅ Refresh the password list after adding
-    } else {
-        alert("Enter website name and password first!");
-    }
+    showPassword(); // ✅ Refresh the password list after adding
+  } else {
+    alert("Enter website name and password first!");
+  }
 }
 
 // Show saved passwords
 function showPassword() {
-    let tableBody = document.querySelector(".password-container");
+  let tableBody = document.querySelector(".password-container");
 
-    // Clear previous list
-    tableBody.innerHTML = "";
+  // Clear previous list
+  tableBody.innerHTML = "";
 
-    const passwordList = JSON.parse(localStorage.getItem("passwords")) || [];
+  const passwordList = JSON.parse(localStorage.getItem("passwords")) || [];
 
-    if (passwordList.length === 0) {
-        let msg = document.createElement("h3");
-        msg.textContent = "Empty password list";
-        msg.style.color = "red";
-        msg.style.textAlign = "center";
-        tableBody.appendChild(msg);
-        return;
-    }
+  if (passwordList.length === 0) {
+    let msg = document.createElement("h3");
+    msg.textContent = "Empty password list";
+    msg.style.color = "red";
+    msg.style.textAlign = "center";
+    tableBody.appendChild(msg);
+    return;
+  }
 
-    for (let i = 0; i < passwordList.length; i++) {
-        let newRow = document.createElement("tr");
+  for (let i = 0; i < passwordList.length; i++) {
+    let newRow = document.createElement("tr");
 
-        let cell1 = document.createElement("td");
-        let cell2 = document.createElement("td");
-        let cell3 = document.createElement("td");
+    let cell1 = document.createElement("td");
+    let cell2 = document.createElement("td");
+    let cell3 = document.createElement("td");
 
-        cell1.textContent = passwordList[i].websiteName;
-        cell2.textContent = passwordList[i].websitePassword;
+    cell1.textContent = passwordList[i].websiteName;
+    cell2.textContent = passwordList[i].websitePassword;
 
-        let copyButton = document.createElement("button");
-        copyButton.textContent = "Copy";
-        copyButton.onclick = function () {
-            navigator.clipboard.writeText(cell2.textContent)
-                .then(() => alert("Copied: " + cell2.textContent))
-                .catch(err => console.error("Error copying:", err));
-        };
+    let copyButton = document.createElement("button");
+    copyButton.textContent = "Copy";
+    copyButton.onclick = function () {
+      navigator.clipboard
+        .writeText(cell2.textContent)
+        .then(() => alert("Copied: " + cell2.textContent))
+        .catch((err) => console.error("Error copying:", err));
+    };
 
-        cell3.appendChild(copyButton);
+    cell3.appendChild(copyButton);
 
-        newRow.appendChild(cell1);
-        newRow.appendChild(cell2);
-        newRow.appendChild(cell3);
+    newRow.appendChild(cell1);
+    newRow.appendChild(cell2);
+    newRow.appendChild(cell3);
 
-        tableBody.appendChild(newRow);
-    }
+    tableBody.appendChild(newRow);
+  }
 }
-
-
