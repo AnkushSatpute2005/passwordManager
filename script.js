@@ -85,6 +85,7 @@ function addPassword() {
 
   if (website_name && website_password) {
     const newEntry = {
+      id:crypto.randomUUID(),
       websiteName: website_name,
       websitePassword: website_password,
     };
@@ -99,7 +100,7 @@ function addPassword() {
     document.getElementById("website-name").value = "";
     document.getElementById("website-password").value = "";
 
-    showPassword(); // ✅ Refresh the password list after adding
+    showPassword(); // Refresh the password list after adding
   } else {
     alert("Enter website name and password first!");
   }
@@ -115,11 +116,25 @@ function showPassword() {
   const passwordList = JSON.parse(localStorage.getItem("passwords")) || [];
 
   if (passwordList.length === 0) {
-    let msg = document.createElement("h3");
-    msg.textContent = "Empty password list";
-    msg.style.color = "red";
-    msg.style.textAlign = "center";
-    tableBody.appendChild(msg);
+    let msg_row = document.createElement("tr");
+    msg_row.classList.add("msg-row");
+    let msg_data1 = document.createElement("td");
+    msg_data1.textContent = "Empty !";
+    msg_data1.style.color = "red";
+
+    let msg_data2 = document.createElement("td");
+    msg_data2.textContent = "Empty !";
+    msg_data2.style.color = "red";
+
+    let msg_data3 = document.createElement("td");
+    msg_data3.textContent = "Empty !";
+    msg_data3.style.color = "red";
+    // msg.style.textAlign = "center";
+    tableBody.appendChild(msg_row);
+    // msg_row.appendChild(msg_data)
+    msg_row.appendChild(msg_data1);
+    msg_row.appendChild(msg_data2);
+    msg_row.appendChild(msg_data3);
     return;
   }
 
@@ -134,6 +149,7 @@ function showPassword() {
     cell2.textContent = passwordList[i].websitePassword;
 
     let copyButton = document.createElement("button");
+    copyButton.classList.add("btn-copy")
     copyButton.textContent = "Copy";
     copyButton.onclick = function () {
       navigator.clipboard
@@ -142,7 +158,17 @@ function showPassword() {
         .catch((err) => console.error("Error copying:", err));
     };
 
+    let deleteButton = document.createElement("button");
+    deleteButton.classList.add("btn-delete");
+    deleteButton.textContent="Delete";
+    deleteButton.setAttribute("id",passwordList[i].id)
+    // console.log(passwordList[i].id)
+    deleteButton.onclick=function(){
+      deletePassword(passwordList[i].id);
+    }
+
     cell3.appendChild(copyButton);
+    cell3.appendChild(deleteButton)
 
     newRow.appendChild(cell1);
     newRow.appendChild(cell2);
@@ -150,4 +176,11 @@ function showPassword() {
 
     tableBody.appendChild(newRow);
   }
+}
+
+function deletePassword(id){
+  let passwordList = JSON.parse(localStorage.getItem("passwords")) || [];
+  passwordList = passwordList.filter(item => item.id !== id);
+  localStorage.setItem("passwords",JSON.stringify(passwordList));
+  showPassword();
 }
