@@ -15,11 +15,39 @@
 body{
     text-align: center;
 }
+img{
+    height: 50px;
+    width: 50px;
+}
+
+img {
+    animation: rotate3d 2s linear infinite;
+    transform-style: preserve-3d;
+}
+
+@keyframes rotate3d {
+    from {
+        transform:   rotateX(0deg) ;
+    }
+    to {
+        transform:  rotateX(360deg);
+    }
+}
 
 header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     background-color: #0b2e33;
-    padding: 20px;
-    color: #b8e3e9;
+    color: #b8e3e9; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 15px 20px; 
+    z-index: 10000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Adds a subtle shadow */
 }
 
 .main{
@@ -27,6 +55,8 @@ header{
     align-items: center;
     justify-content: center;
     height: 70vh;
+    margin-top: 80px;
+    /* position: absolute; */
 }
 
 h2{
