@@ -145,16 +145,23 @@ function showPassword() {
     let cell2 = document.createElement("td");
     let cell3 = document.createElement("td");
 
+    let passwordInput = document.createElement("input")
+    passwordInput.type="password"
+    passwordInput.readOnly=true;
+    passwordInput.id = "dynamicPassword";
+    
+
     cell1.textContent = passwordList[i].websiteName;
-    cell2.textContent = passwordList[i].websitePassword;
+    passwordInput.value = passwordList[i].websitePassword;
+    cell2.appendChild(passwordInput);
 
     let copyButton = document.createElement("button");
     copyButton.classList.add("btn-copy")
     copyButton.textContent = "Copy";
     copyButton.onclick = function () {
       navigator.clipboard
-        .writeText(cell2.textContent)
-        .then(() => alert("Copied: " + cell2.textContent))
+        .writeText(passwordInput.value)
+        .then(() => alert("Copied: " + passwordInput.value))
         .catch((err) => console.error("Error copying:", err));
     };
 

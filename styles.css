@@ -318,4 +318,10 @@ td,th{
     color: #0b2e33;
     border-radius: 10px;
 }
+#dynamicPassword{
+    border: none;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+}
 
